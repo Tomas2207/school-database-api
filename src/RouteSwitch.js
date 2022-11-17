@@ -13,8 +13,9 @@ const RouteSwitch = () => {
   const [admin, setAdmin] = useState();
 
   const getUser = async () => {
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/user`);
+    const res = await axios.get(`/user`);
     const User = res.data;
+    console.log(res);
     if (User) setAdmin(User);
   };
 
@@ -25,6 +26,10 @@ const RouteSwitch = () => {
   const logout = () => {
     setAdmin(false);
   };
+
+  useEffect(() => {
+    console.log('render');
+  }, [admin]);
 
   return (
     <div>

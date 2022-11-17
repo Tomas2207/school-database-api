@@ -22,7 +22,7 @@ const LogIn = ({ userState }) => {
       password: formValues.password,
     };
 
-    fetch(`https://school-database-api.onrender.com/login`, {
+    fetch(`${process.env.REACT_APP_API_URL}/login`, {
       method: 'POST',
       body: JSON.stringify(databody),
       credentials: 'include',
@@ -32,8 +32,8 @@ const LogIn = ({ userState }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(URL);
         setResMessage(data);
+        console.log(data);
         userState();
       });
   };

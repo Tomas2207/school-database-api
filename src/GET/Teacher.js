@@ -14,7 +14,7 @@ const Teacher = ({ admin }) => {
 
   useEffect(() => {
     axios
-      .get(`${URL}/teacher/${id}`)
+      .get(`${process.env.REACT_APP_API_URL}/teacher/${id}`)
       .then((response) => setTeacher(response.data));
   }, []);
 
