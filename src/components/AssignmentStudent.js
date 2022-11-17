@@ -10,7 +10,7 @@ const AssignmentStudent = ({ props }) => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.API_URL}/assignment/${props.id}/students`)
+      .get(`${process.env.REACT_APP_API_URL}/assignment/${props.id}/students`)
       .then((response) => setAssignmentStudent(response.data));
   }, []);
 

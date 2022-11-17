@@ -18,7 +18,7 @@ const Courses = ({ admin }) => {
 
   const getInfo = async () => {
     setLoading(true);
-    const res = await axios.get(`${process.env.API_URL}/course`);
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/course`);
     const Course = res.data;
     if (Course) setCourse(Course);
     setShowForm(false);
@@ -26,7 +26,7 @@ const Courses = ({ admin }) => {
   };
 
   const updateYear = () => {
-    fetch(`${process.env.API_URL}/course`, {
+    fetch(`${process.env.REACT_APP_API_URL}/course`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

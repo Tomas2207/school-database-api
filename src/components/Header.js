@@ -7,7 +7,7 @@ const Header = ({ admin, userState }) => {
   const [user, setUser] = useState(admin);
 
   const logOut = async () => {
-    const res = await axios.get(`${process.env.API_URL}/log-out`);
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/log-out`);
 
     userState();
   };

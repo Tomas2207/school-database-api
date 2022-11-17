@@ -7,7 +7,7 @@ const StudentPreview = ({ showEditForm, getInfo, student, handleEditForm }) => {
 
   const handleDelete = () => {
     if (deleteId !== '') {
-      fetch(`${process.env.API_URL}/student/${deleteId}`, {
+      fetch(`${process.env.REACT_APP_API_URL}/student/${deleteId}`, {
         method: 'DELETE',
       })
         .then((res) => res.json())

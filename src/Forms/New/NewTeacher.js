@@ -16,7 +16,7 @@ const NewTeacher = ({ getInfo }) => {
       lastname: formValues.lastname,
     };
 
-    fetch(`${process.env.API_URL}/teacher`, {
+    fetch(`${process.env.REACT_APP_API_URL}/teacher`, {
       method: 'POST',
       body: JSON.stringify(databody),
       headers: {

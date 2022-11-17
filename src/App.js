@@ -15,7 +15,7 @@ const App = ({ admin, userState }) => {
   };
 
   useEffect(() => {
-    axios.get(`${process.env.API_URL}/teacher`).then((response) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/teacher`).then((response) => {
       console.log(response.data);
       setTeacher(response.data);
     });

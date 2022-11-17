@@ -26,7 +26,7 @@ const NewGrade = ({ props, handleState }) => {
       grade: formValues.grade,
     };
 
-    fetch(`${process.env.API_URL}/grades/${id}/grade`, {
+    fetch(`${process.env.REACT_APP_API_URL}/grades/${id}/grade`, {
       method: 'POST',
       body: JSON.stringify(databody),
       headers: {

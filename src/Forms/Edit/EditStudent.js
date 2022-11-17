@@ -19,7 +19,7 @@ const EditStudent = ({ getInfo, student, handleEditForm }) => {
 
   const getCourses = async () => {
     try {
-      const res = await axios.get(`${process.env.API_URL}/course`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/course`);
       const Course = res.data;
       if (Course) setCourse(Course);
     } catch (error) {
@@ -44,7 +44,7 @@ const EditStudent = ({ getInfo, student, handleEditForm }) => {
       course: formValues.course,
     };
 
-    fetch(`${process.env.API_URL}/student/${student._id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/student/${student._id}`, {
       method: 'PATCH',
       body: JSON.stringify(databody),
       headers: {

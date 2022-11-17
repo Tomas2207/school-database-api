@@ -11,7 +11,7 @@ const Assignments = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.API_URL}/teacher/${id}/assignment`)
+      .get(`${process.env.REACT_APP_API_URL}/teacher/${id}/assignment`)
       .then((response) => setAssignment(response.data));
   }, []);
 

@@ -17,7 +17,7 @@ const TeacherPreview = ({ teacher, getInfo }) => {
 
   const handleSubmit = () => {
     if (id !== '') {
-      fetch(`${process.env.API_URL}/teacher/${id}`, {
+      fetch(`${process.env.REACT_APP_API_URL}/teacher/${id}`, {
         method: 'DELETE',
       })
         .then((res) => res.json())

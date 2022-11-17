@@ -10,7 +10,7 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
   });
 
   const handleDelete = () => {
-    fetch(`${process.env.API_URL}/assignment/${assignment._id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/assignment/${assignment._id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
       teacher: formValues.teacher,
     };
 
-    fetch(`${process.env.API_URL}/assignment/${assignment._id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/assignment/${assignment._id}`, {
       method: 'PATCH',
       body: JSON.stringify(databody),
       headers: {
@@ -54,7 +54,9 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
   };
 
   const getTeachers = async () => {
-    const Teachers = await axios.get(`${process.env.API_URL}/teacher`);
+    const Teachers = await axios.get(
+      `${process.env.REACT_APP_API_URL}/teacher`
+    );
     const ResTeacher = Teachers.data;
     if (ResTeacher) setTeachers(ResTeacher);
   };

@@ -22,7 +22,7 @@ const NewStudent = ({ props }) => {
       course: formValues.course,
     };
 
-    fetch(`${process.env.API_URL}/student`, {
+    fetch(`${process.env.REACT_APP_API_URL}/student`, {
       method: 'POST',
       body: JSON.stringify(databody),
       headers: {

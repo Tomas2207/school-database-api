@@ -22,7 +22,7 @@ const Teachers = ({ admin }) => {
   const getInfo = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${process.env.API_URL}/teacher`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/teacher`);
       const Teacher = res.data;
       if (Teacher) setTeacher(Teacher);
       setShowForm(false);

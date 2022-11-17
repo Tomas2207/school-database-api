@@ -26,7 +26,7 @@ const EditTeacher = ({ getInfo, course, handleEditForm }) => {
       division: formValues.division,
     };
 
-    fetch(`${process.env.API_URL}/course/${course._id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/course/${course._id}`, {
       method: 'PATCH',
       body: JSON.stringify(databody),
       headers: {

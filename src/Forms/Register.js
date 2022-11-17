@@ -41,7 +41,7 @@ const Register = () => {
         password: formValues.password,
       };
 
-      fetch(`${process.env.API_URL}/register`, {
+      fetch(`${process.env.REACT_APP_API_URL}/register`, {
         method: 'POST',
         body: JSON.stringify(databody),
         credentials: 'include',

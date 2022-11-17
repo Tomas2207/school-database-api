@@ -22,7 +22,7 @@ const NewCourse = ({ handleState }) => {
       schoolYear: new Date().getFullYear(),
     };
 
-    fetch(`${process.env.API_URL}/course`, {
+    fetch(`${process.env.REACT_APP_API_URL}/course`, {
       method: 'POST',
       body: JSON.stringify(databody),
       headers: {

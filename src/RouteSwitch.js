@@ -13,7 +13,7 @@ const RouteSwitch = () => {
   const [admin, setAdmin] = useState();
 
   const getUser = async () => {
-    const res = await axios.get(`${process.env.API_URL}/user`);
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/user`);
     const User = res.data;
     if (User) setAdmin(User);
   };

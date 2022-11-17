@@ -12,14 +12,16 @@ const NewCourse = ({ props }) => {
   const [course, setCourse] = useState();
 
   useEffect(() => {
-    axios.get(`${process.env.API_URL}/teacher`).then((response) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/teacher`).then((response) => {
       setTeachers(response.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${process.env.API_URL}/course/${id}`).then((response) => {
-      setCourse(response.data);
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/course/${id}`)
+      .then((response) => {
+        setCourse(response.data);
+      });
   }, []);
 
   const handleChange = (e) => {
@@ -37,7 +39,7 @@ const NewCourse = ({ props }) => {
       calendarYear: new Date().getFullYear(),
     };
 
-    fetch(`${process.env.API_URL}/assignment`, {
+    fetch(`${process.env.REACT_APP_API_URL}/assignment`, {
       method: 'POST',
       body: JSON.stringify(databody),
       headers: {
