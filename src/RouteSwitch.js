@@ -12,16 +12,30 @@ import axios from 'axios';
 const RouteSwitch = () => {
   const [admin, setAdmin] = useState();
 
-  const getUser = async () => {
-    const res = await axios.get(`/user`);
-    const User = res.data;
-    console.log(res);
-    if (User) setAdmin(User);
+  const getUser = () => {
+    fetch(`${process.env.REACT_APP_API_URL}/user`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Cache: 'no-cache',
+      },
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const User = data;
+        if (User) setAdmin(User);
+      });
   };
 
   const userState = () => {
     getUser();
   };
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const logout = () => {
     setAdmin(false);

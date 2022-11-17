@@ -7,9 +7,20 @@ const Header = ({ admin, userState }) => {
   const [user, setUser] = useState(admin);
 
   const logOut = async () => {
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/log-out`);
-
-    userState();
+    fetch(`${process.env.REACT_APP_API_URL}/logout`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Cache: 'no-cache',
+      },
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        userState();
+      });
   };
 
   useEffect(() => {
