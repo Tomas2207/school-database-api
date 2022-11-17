@@ -7,13 +7,11 @@ const StudentPreview = ({ showEditForm, getInfo, student, handleEditForm }) => {
 
   const handleDelete = () => {
     if (deleteId !== '') {
-      fetch(`/student/${deleteId}`, {
+      fetch(`${process.env.API_URL}/student/${deleteId}`, {
         method: 'DELETE',
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data.message);
-          console.log(data.errorMessage);
           setError(data.error);
           if (!data.error) getInfo();
         });

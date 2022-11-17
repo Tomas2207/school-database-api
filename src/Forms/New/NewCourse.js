@@ -22,7 +22,7 @@ const NewCourse = ({ handleState }) => {
       schoolYear: new Date().getFullYear(),
     };
 
-    fetch('/course', {
+    fetch(`${process.env.API_URL}/course`, {
       method: 'POST',
       body: JSON.stringify(databody),
       headers: {
@@ -31,7 +31,6 @@ const NewCourse = ({ handleState }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         handleState();
       });
   };

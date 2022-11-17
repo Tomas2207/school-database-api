@@ -15,12 +15,11 @@ const EditStudent = ({ getInfo, student, handleEditForm }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
   };
 
   const getCourses = async () => {
     try {
-      const res = await axios.get('/course');
+      const res = await axios.get(`${process.env.API_URL}/course`);
       const Course = res.data;
       if (Course) setCourse(Course);
     } catch (error) {
@@ -44,9 +43,8 @@ const EditStudent = ({ getInfo, student, handleEditForm }) => {
       lastname: formValues.lastname,
       course: formValues.course,
     };
-    console.log('databody', databody);
 
-    fetch(`/student/${student._id}`, {
+    fetch(`${process.env.API_URL}/student/${student._id}`, {
       method: 'PATCH',
       body: JSON.stringify(databody),
       headers: {
@@ -55,7 +53,6 @@ const EditStudent = ({ getInfo, student, handleEditForm }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         getInfo();
         handleEditForm();
       });

@@ -7,12 +7,11 @@ const Gradesheet = ({ props, array, handleState, getInfo }) => {
   const [Array, setArray] = useState(array);
 
   const handleDelete = () => {
-    fetch(`/grades/${id}`, {
+    fetch(`${process.env.API_URL}/grades/${id}`, {
       method: 'DELETE',
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.message);
         getInfo();
       });
   };

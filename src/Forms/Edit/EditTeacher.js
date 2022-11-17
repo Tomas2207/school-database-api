@@ -16,7 +16,7 @@ const EditTeacher = ({ getInfo, teacher, handleEditForm }) => {
       lastname: formValues.lastname,
     };
 
-    fetch(`/teacher/${teacher._id}`, {
+    fetch(`${process.env.API_URL}/teacher/${teacher._id}`, {
       method: 'PATCH',
       body: JSON.stringify(databody),
       headers: {
@@ -25,8 +25,6 @@ const EditTeacher = ({ getInfo, teacher, handleEditForm }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         getInfo();
       });
   };

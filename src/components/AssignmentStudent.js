@@ -9,9 +9,8 @@ const AssignmentStudent = ({ props }) => {
   let theId = props.id;
 
   useEffect(() => {
-    console.log(props.id);
     axios
-      .get(`/assignment/${props.id}/students`)
+      .get(`${process.env.API_URL}/assignment/${props.id}/students`)
       .then((response) => setAssignmentStudent(response.data));
   }, []);
 
@@ -23,7 +22,6 @@ const AssignmentStudent = ({ props }) => {
     }
   };
 
-  console.log(AssignmentStudent);
   return (
     <div>
       <button onClick={handleShowStudents}>Alumnos:</button>

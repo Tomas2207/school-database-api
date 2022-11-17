@@ -10,7 +10,7 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
   });
 
   const handleDelete = () => {
-    fetch(`/assignment/${assignment._id}`, {
+    fetch(`${process.env.API_URL}/assignment/${assignment._id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -18,7 +18,6 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         getInfo();
       });
   };
@@ -30,9 +29,8 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
       name: formValues.name,
       teacher: formValues.teacher,
     };
-    console.log('databody', databody);
 
-    fetch(`/assignment/${assignment._id}`, {
+    fetch(`${process.env.API_URL}/assignment/${assignment._id}`, {
       method: 'PATCH',
       body: JSON.stringify(databody),
       headers: {
@@ -41,7 +39,6 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         getInfo();
         handleEditForm();
       });
@@ -50,7 +47,6 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
   };
 
   const handleEditForm = () => {
@@ -58,10 +54,9 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
   };
 
   const getTeachers = async () => {
-    const Teachers = await axios.get('/teacher');
+    const Teachers = await axios.get(`${process.env.API_URL}/teacher`);
     const ResTeacher = Teachers.data;
     if (ResTeacher) setTeachers(ResTeacher);
-    console.log(Teachers.data);
   };
 
   useEffect(() => {

@@ -15,11 +15,13 @@ const App = ({ admin, userState }) => {
   };
 
   useEffect(() => {
-    axios.get('/teacher').then((response) => setTeacher(response.data));
+    axios.get(`${process.env.API_URL}/teacher`).then((response) => {
+      console.log(response.data);
+      setTeacher(response.data);
+    });
   }, []);
 
   useEffect(() => {
-    console.log(admin);
     setUser(admin);
     setCheck(false);
   }, [admin]);

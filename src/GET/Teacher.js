@@ -13,7 +13,9 @@ const Teacher = ({ admin }) => {
   }
 
   useEffect(() => {
-    axios.get(`/teacher/${id}`).then((response) => setTeacher(response.data));
+    axios
+      .get(`${URL}/teacher/${id}`)
+      .then((response) => setTeacher(response.data));
   }, []);
 
   return (

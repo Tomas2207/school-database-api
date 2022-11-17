@@ -41,7 +41,7 @@ const Register = () => {
         password: formValues.password,
       };
 
-      fetch('/register', {
+      fetch(`${process.env.API_URL}/register`, {
         method: 'POST',
         body: JSON.stringify(databody),
         credentials: 'include',

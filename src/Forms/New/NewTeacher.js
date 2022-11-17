@@ -16,7 +16,7 @@ const NewTeacher = ({ getInfo }) => {
       lastname: formValues.lastname,
     };
 
-    fetch('/teacher', {
+    fetch(`${process.env.API_URL}/teacher`, {
       method: 'POST',
       body: JSON.stringify(databody),
       headers: {
@@ -25,7 +25,6 @@ const NewTeacher = ({ getInfo }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         getInfo();
       });
   };

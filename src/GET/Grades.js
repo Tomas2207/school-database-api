@@ -17,15 +17,17 @@ const Grades = ({ props }) => {
     try {
       setLoading(true);
 
-      const resAssignment = await axios.get(`/assignment/${assignment_id}`);
+      const resAssignment = await axios.get(
+        `${URL}/assignment/${assignment_id}`
+      );
       const Assignments = resAssignment.data;
       if (Assignments) setAssignment(Assignments);
 
-      const resStudent = await axios.get(`/student/${student_id}`);
+      const resStudent = await axios.get(`${URL}/student/${student_id}`);
       const Students = resStudent.data;
       if (Students) setStudent(Students);
 
-      const resGrades = await axios.get(`/grades/${student_id}`);
+      const resGrades = await axios.get(`${URL}/grades/${student_id}`);
       const Gradesheets = resGrades.data;
       if (Gradesheets) setGradesheets(Gradesheets);
 
@@ -55,7 +57,7 @@ const Grades = ({ props }) => {
       student: student_id,
     };
 
-    fetch('/grades', {
+    fetch(`${URL}/grades`, {
       method: 'POST',
       body: JSON.stringify(databody),
       headers: {

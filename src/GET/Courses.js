@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useFetcher, useNavigate } from 'react-router-dom';
 import CoursePreview from '../components/CoursePreview';
 import NewCourse from '../Forms/New/NewCourse';
+
 const Courses = ({ admin }) => {
   const [courses, setCourse] = useState();
   const [isLoading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ const Courses = ({ admin }) => {
 
   const getInfo = async () => {
     setLoading(true);
-    const res = await axios.get(`/course`);
+    const res = await axios.get(`${process.env.API_URL}/course`);
     const Course = res.data;
     if (Course) setCourse(Course);
     setShowForm(false);
@@ -25,7 +26,7 @@ const Courses = ({ admin }) => {
   };
 
   const updateYear = () => {
-    fetch('/course', {
+    fetch(`${process.env.API_URL}/course`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -33,9 +34,8 @@ const Courses = ({ admin }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setMessage(data);
-        console.log('message', message);
+
         handleState();
       });
   };

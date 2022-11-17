@@ -1,14 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Teacher from './GET/Teacher';
 import App from './App';
-import Assignments from './components/Assignments';
-import AssignmentStudent from './components/AssignmentStudent';
 import Header from './components/Header';
-import NewTeacher from './Forms/New/NewTeacher';
-import Sign from './Forms/LogIn';
-import NewStudent from './Forms/New/NewStudent';
-import NewCourse from './Forms/New/NewCourse';
-import NewAssignments from './Forms/New/NewAssignment';
 import Courses from './GET/Courses';
 import Course from './GET/Course';
 import Grades from './GET/Grades';
@@ -20,7 +13,7 @@ const RouteSwitch = () => {
   const [admin, setAdmin] = useState();
 
   const getUser = async () => {
-    const res = await axios.get(`/user`);
+    const res = await axios.get(`${process.env.API_URL}/user`);
     const User = res.data;
     if (User) setAdmin(User);
   };

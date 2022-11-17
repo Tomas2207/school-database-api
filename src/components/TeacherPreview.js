@@ -6,7 +6,6 @@ const TeacherPreview = ({ teacher, getInfo }) => {
   const [error, setError] = useState();
   const [id, setId] = useState('');
   const [showEdit, setShowEdit] = useState(false);
-  console.log('t', id);
 
   useEffect(() => {
     handleSubmit();
@@ -17,15 +16,12 @@ const TeacherPreview = ({ teacher, getInfo }) => {
   };
 
   const handleSubmit = () => {
-    console.log(id);
     if (id !== '') {
-      fetch(`/teacher/${id}`, {
+      fetch(`${process.env.API_URL}/teacher/${id}`, {
         method: 'DELETE',
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data.message);
-          console.log(data.errorMessage);
           setError(data.errorMessage);
           if (!data.errorMessage) getInfo();
         });

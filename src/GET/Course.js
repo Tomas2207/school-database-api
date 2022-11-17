@@ -29,11 +29,11 @@ const Course = ({ admin }) => {
 
   const getInfo = async () => {
     setLoading(true);
-    const resCourse = await axios.get(`/course/${id}`);
+    const resCourse = await axios.get(`${URL}/course/${id}`);
     const Course = resCourse.data;
     if (Course) setCourse(Course);
 
-    const Res = await axios.get(`/course/students/${id}`);
+    const Res = await axios.get(`${URL}/course/students/${id}`);
     const Students = Res.data.students;
     const Assignments = Res.data.assignments;
     if (Students) setStudents(Students);

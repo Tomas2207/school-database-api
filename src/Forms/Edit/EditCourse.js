@@ -25,9 +25,8 @@ const EditTeacher = ({ getInfo, course, handleEditForm }) => {
       year: formValues.year,
       division: formValues.division,
     };
-    console.log('databody', databody);
 
-    fetch(`/course/${course._id}`, {
+    fetch(`${process.env.API_URL}/course/${course._id}`, {
       method: 'PATCH',
       body: JSON.stringify(databody),
       headers: {
@@ -36,7 +35,6 @@ const EditTeacher = ({ getInfo, course, handleEditForm }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         getInfo();
         handleEditForm();
       });

@@ -11,10 +11,9 @@ const Assignments = () => {
 
   useEffect(() => {
     axios
-      .get(`/teacher/${id}/assignment`)
+      .get(`${process.env.API_URL}/teacher/${id}/assignment`)
       .then((response) => setAssignment(response.data));
   }, []);
-  console.log(assignments);
 
   return (
     <div>
