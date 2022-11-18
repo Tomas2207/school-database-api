@@ -7,7 +7,7 @@ const Header = ({ admin, userState }) => {
   const [user, setUser] = useState(admin);
 
   const logOut = async () => {
-    fetch(`${process.env.REACT_APP_API_URL}/logout`, {
+    fetch(`${process.env.REACT_APP_API_URL}/log-out`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
