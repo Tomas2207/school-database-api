@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { resolvePath, useParams } from 'react-router-dom';
 
 const NewCourse = ({ props }) => {
-  const { id, currentYear } = props;
+  const { id, currentYear, admin_id } = props;
 
   const initialValues = { name: '', teacher: '', course: id };
   const [formValues, setFormValues] = useState(initialValues);
@@ -12,9 +11,11 @@ const NewCourse = ({ props }) => {
   const [course, setCourse] = useState();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/teacher`).then((response) => {
-      setTeachers(response.data);
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/teacher/admin/${admin_id}`)
+      .then((response) => {
+        setTeachers(response.data);
+      });
   }, []);
   useEffect(() => {
     axios
@@ -66,9 +67,9 @@ const NewCourse = ({ props }) => {
           onChange={handleChange}
         >
           <option>--Profesor/a--</option>
-          {teachers?.map((teacher) => {
+          {teachers?.map((teacher, key) => {
             return (
-              <option value={teacher._id}>
+              <option key={key} value={teacher._id}>
                 {teacher.name} {teacher.lastname}
               </option>
             );
@@ -79,7 +80,6 @@ const NewCourse = ({ props }) => {
           type="text"
           autoComplete="off"
           name="name"
-          id=""
           value={formValues.name}
           onChange={handleChange}
         />

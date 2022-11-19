@@ -1,6 +1,4 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { resolvePath, useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 const NewGrade = ({ props, handleState }) => {
   const { id } = props;
@@ -56,7 +54,6 @@ const NewGrade = ({ props, handleState }) => {
             type="text"
             autoComplete="off"
             name="name"
-            id=""
             onChange={handleChange}
             value={formValues.name}
           />
@@ -65,7 +62,6 @@ const NewGrade = ({ props, handleState }) => {
             type="text"
             autoComplete="off"
             name="grade"
-            id=""
             value={formValues.grade}
             onChange={handleChange}
           />

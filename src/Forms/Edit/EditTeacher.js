@@ -37,7 +37,6 @@ const EditTeacher = ({ getInfo, teacher, handleEditForm }) => {
           type="text"
           autoComplete="off"
           name="name"
-          id=""
           value={formValues.name}
           onChange={handleChange}
         />
@@ -46,7 +45,6 @@ const EditTeacher = ({ getInfo, teacher, handleEditForm }) => {
           type="text"
           autoComplete="off"
           name="lastname"
-          id=""
           value={formValues.lastname}
           onChange={handleChange}
         />

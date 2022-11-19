@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react';
-
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const LogIn = ({ userState }) => {
   const initialValues = { username: '', password: '' };
   const [formValues, setFormValues] = useState(initialValues);
   const [resMessage, setResMessage] = useState();
-
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,6 +13,7 @@ const LogIn = ({ userState }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     let databody = {
       username: formValues.username,
@@ -35,6 +33,7 @@ const LogIn = ({ userState }) => {
         setResMessage(data);
         console.log(data);
         userState();
+        setLoading(false);
       });
   };
 
@@ -48,21 +47,19 @@ const LogIn = ({ userState }) => {
           type="text"
           autoComplete="off"
           name="username"
-          id=""
           value={formValues.username}
           onChange={handleChange}
         />
         {resMessage && <div className="error">{resMessage}</div>}
         <label htmlFor="password">Contraseña:</label>
         <input
-          type="text"
+          type="password"
           autoComplete="off"
           name="password"
-          id=""
           value={formValues.password}
           onChange={handleChange}
         />
-        <button>Entrar</button>
+        {loading ? <div>Loading...</div> : <button>Entrar</button>}
       </form>
     </div>
   );

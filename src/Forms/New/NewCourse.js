@@ -1,10 +1,6 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { resolvePath, useParams } from 'react-router-dom';
+import { useState } from 'react';
 
-const NewCourse = ({ handleState }) => {
-  const { id } = useParams();
-
+const NewCourse = ({ handleState, admin_id }) => {
   const initialValues = { level: '', year: '', division: '' };
   const [formValues, setFormValues] = useState(initialValues);
 
@@ -20,6 +16,7 @@ const NewCourse = ({ handleState }) => {
       year: formValues.year,
       division: formValues.division,
       schoolYear: new Date().getFullYear(),
+      admin: admin_id,
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/course`, {
@@ -54,7 +51,6 @@ const NewCourse = ({ handleState }) => {
           type="text"
           autoComplete="off"
           name="year"
-          id=""
           value={formValues.year}
           onChange={handleChange}
         />
@@ -63,7 +59,6 @@ const NewCourse = ({ handleState }) => {
           type="text"
           autoComplete="off"
           name="division"
-          id=""
           value={formValues.division}
           onChange={handleChange}
         />

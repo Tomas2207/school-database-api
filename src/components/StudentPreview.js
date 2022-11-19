@@ -37,10 +37,10 @@ const StudentPreview = ({ showEditForm, getInfo, student, handleEditForm }) => {
           {student.lastname}, {student.name}
           <div className="btn-container">
             <button onClick={handleEditForm}>
-              <img src="/img/edit.png" />
+              <img src="/img/edit.png" alt="edit" />
             </button>
             <button onClick={() => setDeleteId(student._id)}>
-              <img src="/img/delete.png" />
+              <img src="/img/delete.png" alt="delete" />
             </button>
           </div>
         </div>

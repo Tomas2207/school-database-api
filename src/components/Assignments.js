@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import AssignmentStudent from './AssignmentStudent';
 
 const Assignments = () => {
@@ -22,17 +22,16 @@ const Assignments = () => {
         <input
           type="number"
           name="year"
-          id=""
           placeholder="Año..."
           value={yearSearch}
           onChange={(e) => setYearSearch(e.target.value)}
         />
       </form>
       <br></br>
-      {assignments?.map((assignment) => {
+      {assignments?.map((assignment, key) => {
         if (parseInt(yearSearch) === assignment.calendarYear) {
           return (
-            <div className="sub-container">
+            <div key={key} className="sub-container">
               <div>
                 {assignment.name} {assignment.currentYear}
                 {assignment.course.division} {'('}

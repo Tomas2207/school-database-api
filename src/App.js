@@ -6,7 +6,6 @@ import LogIn from './Forms/LogIn';
 
 const App = ({ admin, userState }) => {
   const [teachers, setTeacher] = useState();
-  const [isLoading, setLoading] = useState(false);
   const [user, setUser] = useState(admin);
   const [check, setCheck] = useState(false);
 
@@ -15,10 +14,14 @@ const App = ({ admin, userState }) => {
   };
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/teacher`).then((response) => {
-      console.log(response.data);
-      setTeacher(response.data);
-    });
+    if (admin) {
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/teacher/admin/${admin._id}`)
+        .then((response) => {
+          console.log(response.data);
+          setTeacher(response.data);
+        });
+    }
   }, []);
 
   useEffect(() => {
@@ -29,16 +32,16 @@ const App = ({ admin, userState }) => {
   if (user)
     return (
       <div className="switch-container">
-        <h2>Bienvenido/a {user.username} </h2>
+        <h2>Bienvenido/a {user.name} </h2>
 
         <div className="profile">
-          <img src="/img/user.png" />
+          <img src="/img/user.png" alt="user" />
         </div>
-        <Link to="/teachers">
-          <button>Ver Profesores</button>
-        </Link>
         <Link to="/courses">
           <button>Ver Cursos</button>
+        </Link>
+        <Link to="/teachers">
+          <button>Ver Profesores</button>
         </Link>
       </div>
     );

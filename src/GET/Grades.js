@@ -1,36 +1,39 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Gradesheet from '../components/Gradesheet';
-import NewGrade from '../Forms/New/newGrade';
 
-const Grades = ({ props }) => {
-  const location = useLocation();
-  const { assignment_id, student_id, student_name } = location.state;
+const Grades = ({ props, admin }) => {
   const [gradesheets, setGradesheets] = useState();
   const [assignment, setAssignment] = useState();
   const [student, setStudent] = useState();
-
   const [isLoading, setLoading] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  if (!admin) {
+    navigate('/');
+  }
+
+  // const { assignment_id, student_id } = location.state;
 
   const getInfo = async () => {
     try {
       setLoading(true);
 
       const resAssignment = await axios.get(
-        `${process.env.REACT_APP_API_URL}/assignment/${assignment_id}`
+        `${process.env.REACT_APP_API_URL}/assignment/${location.state.assignment_id}`
       );
       const Assignments = resAssignment.data;
       if (Assignments) setAssignment(Assignments);
 
       const resStudent = await axios.get(
-        `${process.env.REACT_APP_API_URL}/student/${student_id}`
+        `${process.env.REACT_APP_API_URL}/student/${location.state.student_id}`
       );
       const Students = resStudent.data;
       if (Students) setStudent(Students);
 
       const resGrades = await axios.get(
-        `${process.env.REACT_APP_API_URL}/grades/${student_id}`
+        `${process.env.REACT_APP_API_URL}/grades/${location.state.student_id}`
       );
       const Gradesheets = resGrades.data;
       if (Gradesheets) setGradesheets(Gradesheets);
@@ -57,8 +60,8 @@ const Grades = ({ props }) => {
     e.preventDefault();
     let databody = {
       year: new Date().getFullYear(),
-      assignment: assignment_id,
-      student: student_id,
+      assignment: location.state.assignment_id,
+      student: location.state.student_id,
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/grades`, {
@@ -93,7 +96,7 @@ const Grades = ({ props }) => {
       <form action="" onSubmit={handleSubmit}>
         <button type="submit">Agregar Hoja de notas</button>
       </form>
-      {gradesheets?.map((gradesheet) => {
+      {gradesheets?.map((gradesheet, key) => {
         if (gradesheet.assignment._id === assignment._id) {
           return (
             <Gradesheet
@@ -104,6 +107,7 @@ const Grades = ({ props }) => {
               getInfo={getInfo}
               array={gradesheet.grades}
               handleState={handleState}
+              key={key}
             />
           );
         }

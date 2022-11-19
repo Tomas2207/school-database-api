@@ -60,7 +60,6 @@ const EditTeacher = ({ getInfo, course, handleEditForm }) => {
           type="text"
           autoComplete="off"
           name="year"
-          id=""
           value={formValues.year}
           onChange={handleChange}
         />
@@ -69,7 +68,6 @@ const EditTeacher = ({ getInfo, course, handleEditForm }) => {
           type="text"
           autoComplete="off"
           name="division"
-          id=""
           value={formValues.division}
           onChange={handleChange}
         />

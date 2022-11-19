@@ -10,7 +10,6 @@ const EditStudent = ({ getInfo, student, handleEditForm }) => {
   const [formValues, setFormValues] = useState(initialValues);
   const [courses, setCourse] = useState();
   const [date, setDate] = useState(new Date().getFullYear());
-  const [courseId, setCourseId] = useState(student.course);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -67,7 +66,6 @@ const EditStudent = ({ getInfo, student, handleEditForm }) => {
           type="text"
           autoComplete="off"
           name="name"
-          id=""
           value={formValues.name}
           onChange={handleChange}
         />
@@ -76,34 +74,21 @@ const EditStudent = ({ getInfo, student, handleEditForm }) => {
           type="text"
           autoComplete="off"
           name="lastname"
-          id=""
           value={formValues.lastname}
           onChange={handleChange}
         />
         <label htmlFor="course">course:</label>
-        <select
-          name="course"
-          id=""
-          value={formValues.course}
-          onChange={handleChange}
-        >
-          {courses?.map((course) => {
+        <select name="course" value={formValues.course} onChange={handleChange}>
+          {courses?.map((course, key) => {
             if (date === course.schoolYear)
               return (
-                <option value={course._id}>
+                <option key={key} value={course._id}>
                   {course.level} {course.year} {course.division}
                 </option>
               );
           })}
         </select>
-        {/* <input
-          type="text"
-          autoComplete="off"
-          name="course"
-          id=""
-          value={formValues.course}
-          onChange={handleChange}
-        /> */}
+
         <button>Actualizar</button>
       </form>
     </div>

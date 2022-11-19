@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 const AssignmentStudent = ({ props }) => {
@@ -29,9 +29,9 @@ const AssignmentStudent = ({ props }) => {
         <div>
           <h3>Estudiantes: </h3>
           <ul className="list">
-            {AssignmentStudent?.map((student) => {
+            {AssignmentStudent?.map((student, key) => {
               return (
-                <li>
+                <li key={key}>
                   <div>
                     {student.name} {student.lastname}
                   </div>

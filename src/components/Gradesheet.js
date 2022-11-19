@@ -43,9 +43,9 @@ const Gradesheet = ({ props, array, handleState, getInfo }) => {
               <th>Nombre</th>
               <th>Nota</th>
             </tr>
-            {Array.map((grade) => {
+            {Array.map((grade, key) => {
               return (
-                <tr>
+                <tr key={key}>
                   <td>{grade.name}</td>
                   <td>{grade.grade}</td>
                 </tr>

@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useFetcher, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import AssignmentPreview from '../components/AssignmentPreview';
 import StudentPreview from '../components/StudentPreview';
-import EditStudent from '../Forms/Edit/EditStudent';
 import NewAssignment from '../Forms/New/NewAssignment';
 import NewStudent from '../Forms/New/NewStudent';
 
@@ -91,6 +90,7 @@ const Course = ({ admin }) => {
                 id: id,
                 stateHandler: stateHandler,
                 currentYear: course.year,
+                admin_id: admin._id,
               }}
             />
           )}
@@ -100,12 +100,14 @@ const Course = ({ admin }) => {
               <th>Profesor/a</th>
               <th></th>
             </tr>
-            {assignments?.map((assignment) => {
+            {assignments?.map((assignment, key) => {
               if (assignment.calendarYear === course.schoolYear) {
                 return (
                   <AssignmentPreview
                     assignment={assignment}
                     getInfo={getInfo}
+                    key={key}
+                    admin_id={admin._id}
                   />
                 );
               }
@@ -124,13 +126,14 @@ const Course = ({ admin }) => {
             <NewStudent props={{ id: id, stateHandler: stateHandler }} />
           )}
           <ul className="list">
-            {students?.map((student) => {
+            {students?.map((student, key) => {
               return (
                 <StudentPreview
                   showEditForm={showEditForm}
                   getInfo={getInfo}
                   student={student}
                   handleEditForm={handleEditForm}
+                  key={key}
                 />
               );
             })}

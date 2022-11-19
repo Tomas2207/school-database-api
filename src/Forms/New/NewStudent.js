@@ -1,13 +1,10 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { resolvePath, useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 const NewStudent = ({ props }) => {
   const { id } = props;
 
   const initialValues = { name: '', lastname: '', course: id };
   const [formValues, setFormValues] = useState(initialValues);
-  const [course, setCourse] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,7 +40,6 @@ const NewStudent = ({ props }) => {
           type="text"
           autoComplete="off"
           name="name"
-          id=""
           value={formValues.name}
           onChange={handleChange}
         />
@@ -52,7 +48,6 @@ const NewStudent = ({ props }) => {
           type="text"
           autoComplete="off"
           name="lastname"
-          id=""
           value={formValues.lastname}
           onChange={handleChange}
         />

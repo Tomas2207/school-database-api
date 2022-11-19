@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const AssignmentPreview = ({ assignment, getInfo }) => {
+const AssignmentPreview = ({ assignment, getInfo, admin_id }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [teachers, setTeachers] = useState();
   const [formValues, setFormValues] = useState({
@@ -55,7 +55,7 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
 
   const getTeachers = async () => {
     const Teachers = await axios.get(
-      `${process.env.REACT_APP_API_URL}/teacher`
+      `${process.env.REACT_APP_API_URL}/teacher/admin/${admin_id}`
     );
     const ResTeacher = Teachers.data;
     if (ResTeacher) setTeachers(ResTeacher);
@@ -89,9 +89,9 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
             value={formValues.teacher}
             onChange={handleChange}
           >
-            {teachers?.map((teacher) => {
+            {teachers?.map((teacher, key) => {
               return (
-                <option value={teacher._id}>
+                <option key={key} value={teacher._id}>
                   {teacher.name} {teacher.lastname}
                 </option>
               );
@@ -111,10 +111,10 @@ const AssignmentPreview = ({ assignment, getInfo }) => {
       ) : (
         <td>
           <button onClick={handleEditForm}>
-            <img src="/img/edit.png" />
+            <img src="/img/edit.png" alt="edit" />
           </button>{' '}
           <button onClick={handleDelete}>
-            <img src="/img/delete.png" />
+            <img src="/img/delete.png" alt="delete" />
           </button>
         </td>
       )}

@@ -58,14 +58,14 @@ const CoursePreview = ({ course, getInfo }) => {
 
           <div className="btn-container">
             <button onClick={handleEditForm}>
-              <img src="/img/edit.png" />
+              <img src="/img/edit.png" alt="edit" />
             </button>
             <button
               onClick={() => {
                 setId(course._id);
               }}
             >
-              <img src="/img/delete.png" />
+              <img src="/img/delete.png" alt="delete" />
             </button>
           </div>
         </div>

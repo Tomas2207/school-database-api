@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NewTeacher from '../Forms/New/NewTeacher';
 import TeacherPreview from '../components/TeacherPreview';
 
@@ -22,7 +22,9 @@ const Teachers = ({ admin }) => {
   const getInfo = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/teacher`);
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/teacher/admin/${admin._id}`
+      );
       const Teacher = res.data;
       if (Teacher) setTeacher(Teacher);
       setShowForm(false);
@@ -51,9 +53,9 @@ const Teachers = ({ admin }) => {
         <button onClick={handleShowForm}>X</button>
       )}
 
-      {showForm && <NewTeacher getInfo={getInfo} />}
-      {teachers?.map((teacher, i) => {
-        return <TeacherPreview teacher={teacher} getInfo={getInfo} />;
+      {showForm && <NewTeacher getInfo={getInfo} admin_id={admin._id} />}
+      {teachers?.map((teacher, key) => {
+        return <TeacherPreview teacher={teacher} getInfo={getInfo} key={key} />;
       })}
     </div>
   );

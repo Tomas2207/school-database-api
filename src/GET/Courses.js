@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useFetcher, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CoursePreview from '../components/CoursePreview';
 import NewCourse from '../Forms/New/NewCourse';
 
@@ -18,7 +18,9 @@ const Courses = ({ admin }) => {
 
   const getInfo = async () => {
     setLoading(true);
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/course`);
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/course/admin/${admin._id}`
+    );
     const Course = res.data;
     if (Course) setCourse(Course);
     setShowForm(false);
@@ -26,7 +28,7 @@ const Courses = ({ admin }) => {
   };
 
   const updateYear = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/course`, {
+    fetch(`${process.env.REACT_APP_API_URL}/course/admin/${admin._id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +76,6 @@ const Courses = ({ admin }) => {
           <input
             type="number"
             name="year"
-            id=""
             placeholder="Año..."
             value={yearSearch}
             onChange={(e) => setYearSearch(e.target.value)}
@@ -82,11 +83,11 @@ const Courses = ({ admin }) => {
         </form>
       )}
 
-      {showForm && <NewCourse handleState={handleState} />}
+      {showForm && <NewCourse handleState={handleState} admin_id={admin._id} />}
 
-      {courses?.map((course) => {
+      {courses?.map((course, key) => {
         if (course.schoolYear === parseInt(yearSearch)) {
-          return <CoursePreview course={course} getInfo={getInfo} />;
+          return <CoursePreview course={course} getInfo={getInfo} key={key} />;
         }
       })}
     </div>

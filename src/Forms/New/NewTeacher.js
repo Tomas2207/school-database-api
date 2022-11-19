@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const NewTeacher = ({ getInfo }) => {
+const NewTeacher = ({ getInfo, admin_id }) => {
   const initialValues = { name: '', lastname: '' };
   const [formValues, setFormValues] = useState(initialValues);
 
@@ -14,6 +14,7 @@ const NewTeacher = ({ getInfo }) => {
     let databody = {
       name: formValues.name,
       lastname: formValues.lastname,
+      admin: admin_id,
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/teacher`, {
@@ -37,7 +38,6 @@ const NewTeacher = ({ getInfo }) => {
           type="text"
           autoComplete="off"
           name="name"
-          id=""
           value={formValues.name}
           onChange={handleChange}
         />
@@ -46,7 +46,6 @@ const NewTeacher = ({ getInfo }) => {
           type="text"
           autoComplete="off"
           name="lastname"
-          id=""
           value={formValues.lastname}
           onChange={handleChange}
         />

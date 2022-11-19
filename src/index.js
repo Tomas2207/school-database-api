@@ -7,7 +7,6 @@ import './styles/form.css';
 import './styles/assignment.css';
 import './styles/course.css';
 import './styles/switch.css';
-import App from './App';
 import RouteSwitch from './RouteSwitch';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
